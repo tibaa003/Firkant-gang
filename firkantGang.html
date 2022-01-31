@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <canvas id="canvas" width="400px" height="400px"></canvas>
+    <script>
+      canvas = document.getElementById("canvas");
+      ctx = canvas.getContext("2d");
+      x = 0;
+      y = 0;
+
+      function tegn() {
+        // empty canvas
+        ctx.clearRect(0, 0, 400, 400);
+        // draw square with new cords
+        ctx.beginPath();
+        ctx.moveTo(y, x);
+        ctx.lineTo(y + 20, x);
+        ctx.lineTo(y + 20, x + 20);
+        ctx.lineTo(y, x + 20);
+        ctx.lineTo(y, x);
+        ctx.moveTo(0, 300);
+        ctx.lineTo(400, 300);
+        ctx.stroke();
+        // end draw
+        
+        if (x > 300) { // if x cord is more than 300 you win
+          alert("du vant");
+        }
+      }
+      function move(r) {
+        // change cords according to button pressed
+        if (r.keyCode == 37) {
+          y--;
+        } else if (r.keyCode == 39) {
+          y++;
+        } else if (r.keyCode == 40) {
+          x++;
+        } else if (r.keyCode == 38) {
+          x--;
+        }
+        tegn();
+      }
+      addEventListener("keydown", move);
+      tegn();
+    </script>
+  </body>
+</html>
